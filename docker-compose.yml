@@ -1,0 +1,16 @@
+version: "2.3"
+services:
+    qa:
+        ipc: host
+        ports:
+            - "8889:8889"
+            - "8888:8888"
+        user: ${CURRENT_UID}
+        build: 
+            context: .
+            dockerfile: Dockerfile-qa
+        runtime: nvidia
+        volumes:
+                  - .:/develop
+        command:
+            jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --NotebookApp.iopub_data_rate_limit=10000000000

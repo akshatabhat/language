@@ -1,0 +1,17 @@
+FROM tensorflow/tensorflow:latest-gpu-jupyter
+
+RUN apt-get update
+RUN apt-get -y install libpq-dev
+
+RUN pip install natural-questions --no-dependencies
+RUN pip install absl-py
+RUN pip install jinja2
+RUN pip install tornado
+RUN pip install wsgiref
+
+
+RUN pip install bert-tensorflow
+RUN pip install numpy pandas sqlalchemy psycopg2
+RUN pip install spacy tqdm
+RUN python -m spacy download en_core_web_lg
+WORKDIR /develop
